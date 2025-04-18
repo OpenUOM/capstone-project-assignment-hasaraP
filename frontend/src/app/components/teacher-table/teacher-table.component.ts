@@ -60,7 +60,7 @@ export class TeacherTableComponent implements OnInit {
     })
   }
 
-  search(value) {
+  /*search(value) {
     let foundItems = [];
     if (value.length <= 0) {
       this.getTeacherData();
@@ -72,7 +72,17 @@ export class TeacherTableComponent implements OnInit {
       });
       this.teacherData = foundItems;
     }
-  }
+  }*/
+    search(value) {
+      if (value.length <= 0) {
+        this.getTeacherData(); // Reset the teacherData if search text is empty
+      } else {
+        // Filter the teacherData array and search for name matches
+        this.teacherData = this.teacherData.filter((teacher) => 
+          teacher[0].name.toLowerCase().includes(value.toLowerCase())
+        );
+      }
+    }
 
   deleteTeacher(itemid) {
     const test = {
